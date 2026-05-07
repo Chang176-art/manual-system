@@ -5,3 +5,6 @@ server/.env
 client/dist/
 *.log
 .env
+.superpowers/
+manual-text.txt
+manual-raw.txt
