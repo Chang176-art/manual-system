@@ -1,0 +1,148 @@
+<h2>用户手册系统 — 完整方案</h2>
+<p class="subtitle">基于你选的 B 布局 + PDF 内容分析后的整体设计</p>
+
+<div class="section">
+  <h3>一、系统架构</h3>
+  <div class="mockup" style="border-color:#e2e8f0;">
+    <div class="mockup-body" style="padding:16px;font-size:13px;">
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:12px;text-align:center;">
+          <strong>管理后台 (Vue + Node.js)</strong><br/>
+          <span style="color:#64748b;font-size:12px;">富文本编辑器 · 目录管理 · 内容发布</span>
+        </div>
+        <div style="display:flex;justify-content:center;gap:12px;">
+          <div style="flex:1;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:12px;text-align:center;">
+            <strong>用户手册网站</strong><br/>
+            <span style="color:#64748b;font-size:12px;">卡片首页 → 详情阅读页<br/>扫码直达 · 响应式</span>
+          </div>
+          <div style="flex:1;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:12px;text-align:center;">
+            <strong>AI 知识库接口</strong><br/>
+            <span style="color:#64748b;font-size:12px;">结构化 API 输出<br/>给智能客服喂数据</span>
+          </div>
+        </div>
+        <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;text-align:center;">
+          <strong>数据库 (SQL)</strong><br/>
+          <span style="color:#64748b;font-size:12px;">手册内容表 · 分类表 · 版本管理</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>二、数据模型设计（AI 知识库友好）</h3>
+  <div class="mockup" style="border-color:#e2e8f0;">
+    <div class="mockup-body" style="padding:16px;font-size:13px;">
+      <pre style="background:#f8fafc;padding:12px;border-radius:6px;font-family:monospace;overflow-x:auto;">
+categories          ← 分类/手册（如"房源管理"）
+  id, title, sort, parent_id
+  icon, description
+
+articles            ← 文章/章节（如"新增房源"）
+  id, category_id, title, content
+  content_html, content_text (纯文本给AI)
+  sort, status, version
+
+tags                ← 标签（便于 AI 检索）
+  id, name
+
+article_tags        ← 文章-标签关联
+  article_id, tag_id
+      </pre>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>三、前端页面</h3>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:200px;">
+      <div class="mockup" style="height:100%;">
+        <div class="mockup-header">首页 - 卡片分类</div>
+        <div class="mockup-body" style="padding:12px;font-size:12px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div style="background:#f1f5f9;padding:8px;border-radius:6px;text-align:center;">
+              <div style="font-size:20px;">🏘️</div>
+              <div><strong>房源管理</strong></div>
+              <div style="color:#94a3b8;">3 篇文章</div>
+            </div>
+            <div style="background:#f1f5f9;padding:8px;border-radius:6px;text-align:center;">
+              <div style="font-size:20px;">👤</div>
+              <div><strong>账号管理</strong></div>
+              <div style="color:#94a3b8;">12 篇文章</div>
+            </div>
+            <div style="background:#f1f5f9;padding:8px;border-radius:6px;text-align:center;">
+              <div style="font-size:20px;">🔐</div>
+              <div><strong>门禁管理</strong></div>
+              <div style="color:#94a3b8;">8 篇文章</div>
+            </div>
+            <div style="background:#f1f5f9;padding:8px;border-radius:6px;text-align:center;">
+              <div style="font-size:20px;">⚙️</div>
+              <div><strong>系统设置</strong></div>
+              <div style="color:#94a3b8;">5 篇文章</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="flex:1;min-width:200px;">
+      <div class="mockup" style="height:100%;">
+        <div class="mockup-header">详情页</div>
+        <div class="mockup-body" style="padding:12px;font-size:12px;">
+          <div style="color:#2563eb;font-size:11px;margin-bottom:8px;">← 返回目录</div>
+          <div style="font-weight:bold;margin-bottom:6px;">新增房源</div>
+          <div style="color:#64748b;margin-bottom:8px;">在房源管理页面点击"新增"按钮...</div>
+          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:4px;height:60px;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:11px;">[截图/示意图]</div>
+          <div style="display:flex;gap:4px;margin-top:8px;">
+            <span style="background:#eff6ff;color:#2563eb;padding:2px 6px;border-radius:4px;font-size:10px;">房源</span>
+            <span style="background:#eff6ff;color:#2563eb;padding:2px 6px;border-radius:4px;font-size:10px;">新增</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>四、管理后台</h3>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:200px;">
+      <div class="mockup">
+        <div class="mockup-header">编辑器页面</div>
+        <div class="mockup-body" style="padding:12px;font-size:12px;">
+          <div>标题: [输入框]</div>
+          <div>分类: [下拉选择]</div>
+          <div style="margin:8px 0;">正文:</div>
+          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:4px;height:100px;margin-bottom:4px;padding:8px;color:#94a3b8;font-size:11px;">
+            富文本编辑区<br/>
+            B / I / U / 图片 / 表格 / 代码块
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="flex:1;min-width:200px;">
+      <div class="mockup">
+        <div class="mockup-header">文章列表</div>
+        <div class="mockup-body" style="padding:12px;font-size:12px;">
+          <div style="display:flex;justify-content:space-between;color:#64748b;border-bottom:1px solid #e2e8f0;padding:4px 0;">
+            <span style="flex:2;">标题</span>
+            <span style="flex:1;">分类</span>
+            <span style="flex:1;">操作</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #f1f5f9;">
+            <span style="flex:2;">新增房源</span>
+            <span style="flex:1;color:#64748b;">房源管理</span>
+            <span style="flex:1;color:#2563eb;">编辑 | 删除</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:4px 0;">
+            <span style="flex:2;">删除房源</span>
+            <span style="flex:1;color:#64748b;">房源管理</span>
+            <span style="flex:1;color:#2563eb;">编辑 | 删除</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p style="margin-top:16px;color:#64748b;">看看这个方向是否满意？需要调整什么随时说。</p>

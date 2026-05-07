@@ -1,0 +1,98 @@
+<h2>用户手册系统 — 前端布局方案</h2>
+<p class="subtitle">用户扫码后看到的页面，三种布局对比</p>
+
+<div class="cards">
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-body">
+      <h3>A. 经典文档布局</h3>
+      <div class="mockup" style="margin:12px 0;border-color:#e2e8f0;">
+        <div class="mockup-body" style="padding:0;">
+          <div style="display:flex;min-height:200px;">
+            <div style="width:100px;background:#f1f5f9;padding:8px;border-right:1px solid #e2e8f0;">
+              <div style="height:8px;background:#cbd5e1;margin:4px 0;border-radius:4px;"></div>
+              <div style="height:8px;background:#cbd5e1;margin:4px 0;border-radius:4px;"></div>
+              <div style="height:8px;background:#2563eb;margin:4px 0;border-radius:4px;width:80%;"></div>
+              <div style="height:8px;background:#cbd5e1;margin:4px 0;border-radius:4px;"></div>
+            </div>
+            <div style="flex:1;padding:12px;">
+              <div style="height:12px;background:#e2e8f0;width:60%;margin-bottom:8px;border-radius:4px;"></div>
+              <div style="height:8px;background:#e2e8f0;width:100%;margin:4px 0;border-radius:4px;"></div>
+              <div style="height:8px;background:#e2e8f0;width:90%;margin:4px 0;border-radius:4px;"></div>
+              <div style="height:8px;background:#e2e8f0;width:80%;margin:4px 0;border-radius:4px;"></div>
+              <div style="height:80px;background:#f8fafc;margin:8px 0;border:1px solid #e2e8f0;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:11px;">截图占位</div>
+              <div style="height:8px;background:#e2e8f0;width:100%;margin:4px 0;border-radius:4px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p>左侧边栏目录 + 右侧内容区，类似 VuePress / GitBook 风格</p>
+      <div class="pros-cons" style="margin-top:8px;">
+        <div class="pros" style="font-size:12px;"><h4 style="font-size:12px;margin:0 0 4px;">优点</h4><ul style="margin:0;padding-left:16px;"><li>目录导航清晰</li><li>适合长篇文档</li><li>用户直觉成本低</li></ul></div>
+        <div class="cons" style="font-size:12px;"><h4 style="font-size:12px;margin:0 0 4px;">缺点</h4><ul style="margin:0;padding-left:16px;"><li>手机屏窄时侧栏占空间</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-body">
+      <h3>B. 卡片式首页 + 详情页</h3>
+      <div class="mockup" style="margin:12px 0;border-color:#e2e8f0;">
+        <div class="mockup-body" style="padding:0;">
+          <div style="padding:12px;">
+            <div style="height:12px;background:#e2e8f0;width:40%;margin:0 auto 12px;border-radius:4px;"></div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;">
+              <div style="flex:1;min-width:80px;background:#f1f5f9;border-radius:6px;padding:12px;text-align:center;border:1px solid #e2e8f0;">
+                <div style="width:24px;height:24px;background:#2563eb;border-radius:4px;margin:0 auto 6px;"></div>
+                <div style="height:8px;background:#cbd5e1;width:70%;margin:0 auto;border-radius:4px;"></div>
+              </div>
+              <div style="flex:1;min-width:80px;background:#f1f5f9;border-radius:6px;padding:12px;text-align:center;border:1px solid #e2e8f0;">
+                <div style="width:24px;height:24px;background:#059669;border-radius:4px;margin:0 auto 6px;"></div>
+                <div style="height:8px;background:#cbd5e1;width:70%;margin:0 auto;border-radius:4px;"></div>
+              </div>
+              <div style="flex:1;min-width:80px;background:#f1f5f9;border-radius:6px;padding:12px;text-align:center;border:1px solid #e2e8f0;">
+                <div style="width:24px;height:24px;background:#d97706;border-radius:4px;margin:0 auto 6px;"></div>
+                <div style="height:8px;background:#cbd5e1;width:70%;margin:0 auto;border-radius:4px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p>首页用卡片展示手册分类，点击进入详情阅读页（详情页可用 A 或 C 布局）</p>
+      <div class="pros-cons" style="margin-top:8px;">
+        <div class="pros" style="font-size:12px;"><h4 style="font-size:12px;margin:0 0 4px;">优点</h4><ul style="margin:0;padding-left:16px;"><li>视觉直观、友好</li><li>适合多手册场景</li><li>扫码直达内容 + 可探索</li></ul></div>
+        <div class="cons" style="font-size:12px;"><h4 style="font-size:12px;margin:0 0 4px;">缺点</h4><ul style="margin:0;padding-left:16px;"><li>多一层页面跳转</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-body">
+      <h3>C. 纯阅读布局（移动优先）</h3>
+      <div class="mockup" style="margin:12px 0;border-color:#e2e8f0;">
+        <div class="mockup-body" style="padding:0;">
+          <div style="max-width:200px;margin:0 auto;padding:12px;">
+            <div style="height:8px;background:#2563eb;width:40%;margin-bottom:8px;border-radius:4px;"></div>
+            <div style="height:16px;background:#e2e8f0;width:100%;margin:4px 0;border-radius:4px;"></div>
+            <div style="height:8px;background:#e2e8f0;width:100%;margin:4px 0;border-radius:4px;"></div>
+            <div style="height:8px;background:#e2e8f0;width:85%;margin:4px 0;border-radius:4px;"></div>
+            <div style="height:60px;background:#f8fafc;margin:8px 0;border:1px solid #e2e8f0;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:10px;">📱 截图</div>
+            <div style="height:8px;background:#e2e8f0;width:100%;margin:4px 0;border-radius:4px;"></div>
+            <div style="height:8px;background:#e2e8f0;width:70%;margin:4px 0;border-radius:4px;"></div>
+            <div style="display:flex;justify-content:space-between;margin-top:8px;">
+              <div style="height:24px;width:24px;background:#f1f5f9;border-radius:50%;"></div>
+              <div style="height:6px;background:#e2e8f0;width:60px;margin:auto;border-radius:4px;"></div>
+              <div style="height:24px;width:24px;background:#f1f5f9;border-radius:50%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p>聚焦内容阅读，顶部/底部导航，类似微信公众号文章风格</p>
+      <div class="pros-cons" style="margin-top:8px;">
+        <div class="pros" style="font-size:12px;"><h4 style="font-size:12px;margin:0 0 4px;">优点</h4><ul style="margin:0;padding-left:16px;"><li>移动端体验最佳</li><li>加载最快</li><li>扫码即读无干扰</li></ul></div>
+        <div class="cons" style="font-size:12px;"><h4 style="font-size:12px;margin:0 0 4px;">缺点</h4><ul style="margin:0;padding-left:16px;"><li>目录浏览不方便</li><li>不适合多章节导航</li></ul></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p style="margin-top:16px;color:#64748b;">👉 点击卡片选择你倾向的布局方案，也可以在终端告诉我你的想法。</p>
