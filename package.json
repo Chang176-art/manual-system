@@ -1,5 +1,8 @@
 {
-  "dependencies": {
-    "pdf-parse": "^2.4.5"
+  "name": "usermanual",
+  "private": true,
+  "scripts": {
+    "build": "cd client && npm install && npm run build",
+    "start": "cd server && npm install && node src/index.js"
   }
 }
