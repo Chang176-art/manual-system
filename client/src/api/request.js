@@ -16,7 +16,7 @@ request.interceptors.request.use(config => {
 request.interceptors.response.use(
   response => response.data,
   error => {
-    if (error.response?.status === 401) {
+    if (error.response?.status === 401 && !window.location.pathname.includes('/admin/login')) {
       localStorage.removeItem('token')
       window.location.href = '/admin/login'
     }

@@ -33,6 +33,9 @@ export function deleteArticle(id) {
 export function getTags() {
   return request.get('/admin/tags')
 }
+export function createTag(data) {
+  return request.post('/admin/tags', data)
+}
 export function deleteTag(id) {
   return request.delete(`/admin/tags/${id}`)
 }

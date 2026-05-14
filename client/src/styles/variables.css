@@ -1,52 +1,163 @@
 :root {
-  /* Colors - Apple Design System */
-  --color-primary: #0066cc;
-  --color-primary-focus: #0071e3;
-  --color-primary-on-dark: #2997ff;
-  --color-ink: #1d1d1f;
-  --color-body: #1d1d1f;
+  /* Colors - Stitch Design System */
+  --color-primary: #0056c8;
+  --color-primary-light: #146ef5;
+  --color-primary-dark: #0044a0;
+  --color-primary-container: #146ef5;
+  --color-primary-fixed: #e0ebff;
+  --color-on-primary: #ffffff;
+
+  --color-secondary: #600de6;
+  --color-secondary-fixed: #ecdfff;
+
+  --color-tertiary: #cb4c00;
+  --color-tertiary-fixed: #ffe0cc;
+
+  --color-ink: #191b23;
+  --color-body: #334155;
   --color-body-on-dark: #ffffff;
-  --color-body-muted: #cccccc;
-  --color-ink-muted-48: #7a7a7a;
-  --color-canvas: #ffffff;
-  --color-canvas-parchment: #f5f5f7;
-  --color-surface-pearl: #fafafc;
-  --color-hairline: #e0e0e0;
+  --color-body-muted: #94A3B8;
+  --color-on-surface: #191b23;
+  --color-on-surface-variant: #424655;
+
+  --color-canvas: #faf8ff;
+  --color-canvas-parchment: #f2f3fe;
+  --color-surface: #faf8ff;
+  --color-surface-container-low: #f2f3fe;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-bright: #ffffff;
+  --color-surface-pearl: #ffffff;
+  --color-surface-container-high: #e8e8f0;
+  --color-surface-container-highest: #dcdce6;
+
+  --color-hairline: #d8d8d8;
+  --color-border-gray: #d8d8d8;
+  --color-border-hover: #898989;
   --color-surface-black: #000000;
+  --color-near-black: #080808;
 
-  /* Typography */
-  --font-display: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-mono: 'SF Mono', 'Fira Code', monospace;
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #ba1a1a;
+  --color-accent-red: #ee1d36;
+  --color-on-error-container: #cc0019;
 
-  --text-hero: 40px;
-  --text-display: 28px;
-  --text-tagline: 21px;
-  --text-body: 17px;
+  --color-accent-green: #00d722;
+  --color-accent-orange: #ff6b00;
+  --color-accent-pink: #ed52cb;
+  --color-accent-yellow: #ffae13;
+
+  --color-gray-300: #ababab;
+  --color-gray-500: #717171;
+  --color-gray-mid: #5a5a5a;
+  --color-gray-800: #222222;
+
+  --color-blue-300: #006acc;
+  --color-blue-400: #3b89ff;
+  --color-button-hover-blue: #0055d4;
+
+  --color-tag-bg: #EFF6FF;
+  --color-tag-text: #2563EB;
+
+  /* Background tokens */
+  --color-accent-green-bg: rgba(0, 215, 34, 0.1);
+  --color-accent-orange-bg: rgba(255, 107, 0, 0.1);
+  --color-accent-pink-bg: rgba(237, 82, 203, 0.1);
+  --color-accent-yellow-bg: rgba(255, 174, 19, 0.1);
+  --color-accent-red-bg: rgba(238, 29, 54, 0.1);
+
+  /* Typography - Geist-like using Plus Jakarta Sans */
+  --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', 'JetBrains Mono', monospace;
+
+  --text-hero: 80px;
+  --text-hero-mobile: 48px;
+  --text-display: 56px;
+  --text-display-mobile: 32px;
+  --text-section-heading: 56px;
+  --text-section-heading-mobile: 32px;
+  --text-sub-heading: 32px;
+  --text-feature-title: 24px;
+  --text-body-large: 20px;
+  --text-tagline: 20px;
+  --text-body: 16px;
+  --text-button: 16px;
   --text-caption: 14px;
+  --text-label-uppercase: 15px;
+  --text-badge-uppercase: 12.8px;
   --text-fine: 12px;
+  --text-micro-label: 10px;
 
+  --weight-light: 300;
   --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
   --weight-strong: 600;
+  --weight-bold: 700;
 
-  /* Spacing */
-  --space-xs: 8px;
-  --space-sm: 12px;
-  --space-md: 17px;
-  --space-lg: 24px;
-  --space-xl: 32px;
-  --space-xxl: 48px;
+  /* Line heights */
+  --leading-hero: 1.04;
+  --leading-section: 1.1;
+  --leading-sub: 1.3;
+  --leading-body: 1.6;
+  --leading-relaxed: 1.6;
+  --leading-tight: 1.1;
+
+  /* Spacing - design system tokens */
+  --space-px-2: 2px;
+  --space-px-4: 4px;
+  --space-px-8: 8px;
+  --space-px-12: 12px;
+  --space-px-16: 16px;
+  --space-px-20: 20px;
+  --space-px-24: 24px;
+  --space-px-32: 32px;
+  --space-px-40: 40px;
+  --space-xs: var(--space-px-8);
+  --space-sm: var(--space-px-12);
+  --space-md: var(--space-px-16);
+  --space-lg: var(--space-px-24);
+  --space-xl: var(--space-px-32);
+  --space-xxl: var(--space-px-40);
   --space-section: 80px;
+  --gutter: var(--space-px-24);
+  --margin-desktop: var(--space-px-40);
+  --margin-mobile: var(--space-px-16);
 
   /* Radius */
-  --radius-sm: 8px;
-  --radius-md: 11px;
-  --radius-lg: 18px;
+  --radius-sm: 0.125rem;    /* 2px */
+  --radius-md: 0.25rem;     /* 4px - rounded-lg in design */
+  --radius-lg: 0.5rem;      /* 8px - rounded-xl in design */
+  --radius-xl: 0.75rem;     /* 12px */
   --radius-pill: 9999px;
 
   /* Content max-width */
-  --content-width: 980px;
+  --content-width: 960px;
+  --content-wide: 1280px;
+  --content-max: 1280px;
 
-  /* Shadows */
-  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.08);
+  /* Shadows - Webflow style */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 4px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-webflow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06), 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-stack-1: 0 3px 7px rgba(0, 0, 0, 0.09);
+  --shadow-stack-2: 0 13px 13px rgba(0, 0, 0, 0.08);
+  --shadow-stack-high: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+
+  /* Element Plus theme variable overrides */
+  --el-color-primary: #0056c8;
+  --el-color-primary-light-3: #146ef5;
+  --el-color-primary-light-5: #4d8df7;
+  --el-color-primary-light-7: #87afff;
+  --el-color-primary-light-8: #a8c4ff;
+  --el-color-primary-light-9: #d0e0ff;
+  --el-color-primary-dark-2: #0044a0;
+  --el-border-radius-base: 4px;
+  --el-font-size-base: 16px;
+  --el-font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
 }

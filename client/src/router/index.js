@@ -5,12 +5,19 @@ const routes = [
   { path: '/article/:id', name: 'Article', component: () => import('../views/public/ArticlePage.vue') },
   { path: '/search', name: 'Search', component: () => import('../views/public/SearchResults.vue') },
   { path: '/admin/login', name: 'Login', component: () => import('../views/admin/LoginPage.vue') },
-  { path: '/admin', name: 'Dashboard', component: () => import('../views/admin/DashboardPage.vue'), meta: { requiresAuth: true } },
-  { path: '/admin/articles', name: 'ArticleList', component: () => import('../views/admin/ArticleList.vue'), meta: { requiresAuth: true } },
-  { path: '/admin/articles/create', name: 'ArticleCreate', component: () => import('../views/admin/ArticleEditor.vue'), meta: { requiresAuth: true } },
-  { path: '/admin/articles/:id/edit', name: 'ArticleEdit', component: () => import('../views/admin/ArticleEditor.vue'), meta: { requiresAuth: true } },
-  { path: '/admin/categories', name: 'CategoryManager', component: () => import('../views/admin/CategoryManager.vue'), meta: { requiresAuth: true } },
-  { path: '/admin/tags', name: 'TagManager', component: () => import('../views/admin/TagManager.vue'), meta: { requiresAuth: true } },
+  {
+    path: '/admin',
+    component: () => import('../views/admin/DashboardPage.vue'),
+    meta: { requiresAuth: true },
+    children: [
+      { path: '', redirect: '/admin/articles' },
+      { path: 'articles', name: 'ArticleList', component: () => import('../views/admin/ArticleList.vue') },
+      { path: 'articles/create', name: 'ArticleCreate', component: () => import('../views/admin/ArticleEditor.vue') },
+      { path: 'articles/:id/edit', name: 'ArticleEdit', component: () => import('../views/admin/ArticleEditor.vue') },
+      { path: 'categories', name: 'CategoryManager', component: () => import('../views/admin/CategoryManager.vue') },
+      { path: 'tags', name: 'TagManager', component: () => import('../views/admin/TagManager.vue') },
+    ]
+  },
 ]
 
 const router = createRouter({

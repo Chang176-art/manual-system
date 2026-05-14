@@ -154,9 +154,25 @@ router.delete('/articles/:id', async (req, res, next) => {
 // Tags
 router.get('/tags', async (req, res, next) => {
   try {
-    const rows = await query('SELECT * FROM tags ORDER BY id DESC')
+    const rows = await query(
+      `SELECT t.*, (SELECT COUNT(*) FROM article_tags at WHERE at.tag_id = t.id) as article_count
+       FROM tags t ORDER BY t.id DESC`
+    )
     success(res, rows)
   } catch (err) { next(err) }
+})
+
+router.post('/tags', async (req, res, next) => {
+  try {
+    const { name, color, description } = req.body
+    if (!name) return fail(res, '标签名称不能为空', -1)
+    const r = await query('INSERT INTO tags (name, color, description) VALUES (?, ?, ?)',
+      [name, color || '#3b89ff', description || ''])
+    success(res, { id: r.insertId })
+  } catch (err) {
+    if (err.code === 'ER_DUP_ENTRY') return fail(res, '标签已存在', -1)
+    next(err)
+  }
 })
 
 router.delete('/tags/:id', async (req, res, next) => {

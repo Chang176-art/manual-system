@@ -1,20 +1,50 @@
 <template>
   <div class="rich-editor">
     <div class="editor-toolbar">
-      <el-button-group size="small">
-        <el-button @click="chain().toggleBold().run()" :type="editor?.isActive('bold') ? 'primary' : ''">B</el-button>
-        <el-button @click="chain().toggleItalic().run()" :type="editor?.isActive('italic') ? 'primary' : ''">I</el-button>
-        <el-button @click="chain().toggleHeading({ level: 2 }).run()" :type="editor?.isActive('heading', { level: 2 }) ? 'primary' : ''">H2</el-button>
-        <el-button @click="chain().toggleHeading({ level: 3 }).run()" :type="editor?.isActive('heading', { level: 3 }) ? 'primary' : ''">H3</el-button>
-        <el-button @click="chain().toggleBulletList().run()" :type="editor?.isActive('bulletList') ? 'primary' : ''">列表</el-button>
-        <el-button @click="chain().toggleOrderedList().run()" :type="editor?.isActive('orderedList') ? 'primary' : ''">编号</el-button>
-        <el-button @click="chain().toggleCodeBlock().run()" :type="editor?.isActive('codeBlock') ? 'primary' : ''">代码</el-button>
-        <el-button @click="chain().toggleBlockquote().run()" :type="editor?.isActive('blockquote') ? 'primary' : ''">引用</el-button>
-      </el-button-group>
-      <el-button-group size="small" style="margin-left:8px;">
-        <el-button @click="insertTable">表格</el-button>
-        <el-button @click="insertImage">图片</el-button>
-      </el-button-group>
+      <div class="fmt-group">
+        <button class="fmt-btn" @click="chain().toggleBold().run()" :class="{ 'fmt-active': editor?.isActive('bold') }" title="加粗">
+          <Icon name="format_bold" />
+        </button>
+        <button class="fmt-btn" @click="chain().toggleItalic().run()" :class="{ 'fmt-active': editor?.isActive('italic') }" title="斜体">
+          <Icon name="format_italic" />
+        </button>
+        <button class="fmt-btn" @click="chain().toggleStrike().run()" :class="{ 'fmt-active': editor?.isActive('strike') }" title="删除线">
+          <Icon name="format_strikethrough" />
+        </button>
+      </div>
+      <span class="fmt-divider"></span>
+      <div class="fmt-group">
+        <button class="fmt-btn" @click="chain().toggleHeading({ level: 2 }).run()" :class="{ 'fmt-active': editor?.isActive('heading', { level: 2 }) }" title="标题2">
+          <Icon name="format_h2" />
+        </button>
+        <button class="fmt-btn" @click="chain().toggleHeading({ level: 3 }).run()" :class="{ 'fmt-active': editor?.isActive('heading', { level: 3 }) }" title="标题3">
+          <Icon name="format_h3" />
+        </button>
+        <button class="fmt-btn" @click="chain().toggleBlockquote().run()" :class="{ 'fmt-active': editor?.isActive('blockquote') }" title="引用">
+          <Icon name="format_quote" />
+        </button>
+      </div>
+      <span class="fmt-divider"></span>
+      <div class="fmt-group">
+        <button class="fmt-btn" @click="chain().toggleBulletList().run()" :class="{ 'fmt-active': editor?.isActive('bulletList') }" title="列表">
+          <Icon name="format_list_bulleted" />
+        </button>
+        <button class="fmt-btn" @click="chain().toggleOrderedList().run()" :class="{ 'fmt-active': editor?.isActive('orderedList') }" title="编号">
+          <Icon name="format_list_numbered" />
+        </button>
+      </div>
+      <span class="fmt-divider"></span>
+      <div class="fmt-group">
+        <button class="fmt-btn" @click="chain().toggleCodeBlock().run()" :class="{ 'fmt-active': editor?.isActive('codeBlock') }" title="代码">
+          <Icon name="code" />
+        </button>
+        <button class="fmt-btn" @click="insertTable" title="表格">
+          <Icon name="table" />
+        </button>
+        <button class="fmt-btn" @click="insertImage" title="图片">
+          <Icon name="image" />
+        </button>
+      </div>
     </div>
     <editor-content :editor="editor" class="editor-content" />
     <input type="file" ref="fileInput" accept="image/*" style="display:none" @change="onFileSelected" />
@@ -82,25 +112,132 @@ async function onFileSelected(e) {
 </script>
 
 <style scoped>
-.rich-editor { border: 1px solid var(--color-hairline); border-radius: var(--radius-sm); }
-.editor-toolbar {
-  padding: 8px;
-  border-bottom: 1px solid var(--color-hairline);
-  background: var(--color-canvas-parchment);
+.rich-editor {
+  border: 1px solid var(--color-border-gray);
+  border-radius: var(--radius-md);
+  overflow: hidden;
 }
-.editor-content { padding: 16px; min-height: 400px; }
+
+.editor-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-px-4);
+  padding: var(--space-px-8);
+  border-bottom: 1px solid var(--color-border-gray);
+  background: var(--color-surface-container-low);
+  flex-wrap: wrap;
+}
+
+.fmt-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-px-2);
+}
+
+.fmt-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--color-border-gray);
+  margin: 0 var(--space-px-4);
+}
+
+.fmt-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: var(--color-on-surface-variant);
+  transition: all 0.15s;
+}
+
+.fmt-btn:hover {
+  background: var(--color-surface-container-lowest);
+  border-color: var(--color-border-hover);
+}
+
+.fmt-btn .svg-icon {
+  font-size: 18px;
+}
+
+.fmt-active {
+  background: var(--color-primary-fixed);
+  color: var(--color-primary);
+}
+
+.editor-content {
+  min-height: 400px;
+}
+
 .editor-content :deep(.ProseMirror) {
   outline: none;
   min-height: 400px;
+  padding: var(--space-px-16);
   font-size: var(--text-body);
-  line-height: 1.47;
+  line-height: var(--leading-relaxed);
 }
-.editor-content :deep(.ProseMirror h2) { font-size: var(--text-display); font-weight: var(--weight-strong); margin: 16px 0 8px; }
-.editor-content :deep(.ProseMirror h3) { font-size: var(--text-tagline); font-weight: var(--weight-strong); margin: 12px 0 6px; }
-.editor-content :deep(.ProseMirror p) { margin-bottom: 12px; }
-.editor-content :deep(.ProseMirror img) { max-width: 100%; border-radius: var(--radius-sm); }
-.editor-content :deep(.ProseMirror pre) { background: var(--color-canvas-parchment); padding: 12px; border-radius: var(--radius-sm); }
-.editor-content :deep(.ProseMirror table) { width: 100%; border-collapse: collapse; }
-.editor-content :deep(.ProseMirror th), .editor-content :deep(.ProseMirror td) { border: 1px solid var(--color-hairline); padding: 8px; }
-.editor-content :deep(.ProseMirror blockquote) { border-left: 3px solid var(--color-primary); padding-left: 16px; margin: 12px 0; }
+
+.editor-content :deep(.ProseMirror h2) {
+  font-size: var(--text-feature-title);
+  font-weight: var(--weight-semibold);
+  margin: var(--space-px-16) 0 var(--space-px-8);
+}
+
+.editor-content :deep(.ProseMirror h3) {
+  font-size: var(--text-body-large);
+  font-weight: var(--weight-semibold);
+  margin: var(--space-px-12) 0 var(--space-px-6);
+}
+
+.editor-content :deep(.ProseMirror p) {
+  margin-bottom: var(--space-px-12);
+}
+
+.editor-content :deep(.ProseMirror img) {
+  max-width: 100%;
+  border-radius: var(--radius-md);
+}
+
+.editor-content :deep(.ProseMirror pre) {
+  background: var(--color-surface-container-low);
+  padding: var(--space-px-12);
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+}
+
+.editor-content :deep(.ProseMirror table) {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-px-12) 0;
+}
+
+.editor-content :deep(.ProseMirror th),
+.editor-content :deep(.ProseMirror td) {
+  border: 1px solid var(--color-border-gray);
+  padding: var(--space-px-8);
+}
+
+.editor-content :deep(.ProseMirror th) {
+  background: var(--color-surface-container-low);
+  font-weight: var(--weight-semibold);
+}
+
+.editor-content :deep(.ProseMirror blockquote) {
+  border-left: 3px solid var(--color-primary);
+  padding-left: var(--space-px-16);
+  margin: var(--space-px-12) 0;
+  color: var(--color-on-surface-variant);
+  font-style: italic;
+}
+
+.editor-content :deep(.ProseMirror ul),
+.editor-content :deep(.ProseMirror ol) {
+  padding-left: var(--space-px-24);
+  margin-bottom: var(--space-px-12);
+}
 </style>

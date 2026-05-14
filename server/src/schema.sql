@@ -31,7 +31,9 @@ CREATE TABLE IF NOT EXISTS articles (
 
 CREATE TABLE IF NOT EXISTS tags (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(50) NOT NULL UNIQUE
+  name VARCHAR(50) NOT NULL UNIQUE,
+  color VARCHAR(20) DEFAULT '#3b89ff',
+  description VARCHAR(500) DEFAULT ''
 ) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS article_tags (
@@ -49,5 +51,9 @@ CREATE TABLE IF NOT EXISTS admin_users (
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
+-- Add color and description columns to existing tags table
+ALTER TABLE tags ADD COLUMN IF NOT EXISTS color VARCHAR(20) DEFAULT '#3b89ff';
+ALTER TABLE tags ADD COLUMN IF NOT EXISTS description VARCHAR(500) DEFAULT '';
+
 -- Default admin password: admin123
-INSERT INTO admin_users (username, password) VALUES ('admin', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy');
+INSERT INTO admin_users (username, password) VALUES ('admin', '$2a$10$fEVHWVdM9UiR3EpO8CG.ueCiC9K/PFx0bzhzfhIIe435crTczS7yC');

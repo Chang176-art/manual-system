@@ -8,7 +8,7 @@ export async function getArticles(req, res, next) {
     let sql = 'SELECT id, category_id, title, cover_image, status, version, created_at, updated_at FROM articles'
     let countSql = 'SELECT COUNT(*) as total FROM articles'
     const params = []
-    const where = []
+    const where = ['status = 1']
     if (category_id) {
       where.push('category_id = ?')
       params.push(category_id)
@@ -25,7 +25,7 @@ export async function getArticleById(req, res, next) {
     const [article] = await query(
       `SELECT a.*, c.title as category_name FROM articles a
        LEFT JOIN categories c ON a.category_id = c.id
-       WHERE a.id = ?`, [req.params.id]
+       WHERE a.id = ? AND a.status = 1`, [req.params.id]
     )
     if (!article) return fail(res, '文章不存在', 404, 404)
     const tags = await query(
